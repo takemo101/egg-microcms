@@ -1,0 +1,18 @@
+{layout '@layout.layout'}
+
+{block content}
+	<h1 n:block="title">{$category->name}</h1>
+
+	<ul class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 text-sm sm:mt-20 sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-2">
+        <li n:foreach="$blogs as $blog" class="rounded-2xl border border-gray-200 p-8 bg-white">
+            <a href="{route('blog.show', ['id' => $blog->id])}">
+                {if $blog->eyecatch}
+                    <img src="{$blog->eyecatch}" class="w-64 rounded mb-6">
+                {/if}
+                <h3 class="font-semibold text-gray-900">
+                    {$blog->title}
+                </h3>
+            </a>
+        </li>
+    </ul>
+{/block}

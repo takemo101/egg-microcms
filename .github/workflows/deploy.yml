@@ -1,0 +1,47 @@
+name: Cloud Run Deploy
+
+on:
+  repository_dispatch:
+    types: [update_post]
+
+env:
+  GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
+  GCP_SERVICE: ${{ secrets.GCP_SERVICE }}
+  GCP_REGION: us-central1
+  MICROCMS_DOMAIN: ${{ secrets.MICROCMS_DOMAIN }}
+  MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
+  DOTENV_PATH: ./.gcr/.deploy.env
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: git checkout main
+
+      - name: Copy Environment
+        run: |
+          cp ./.gcr/.example.env $DOTENV_PATH
+          sed -i -e "s/=\${MICROCMS_DOMAIN}/=${MICROCMS_DOMAIN}/g" ${DOTENV_PATH}
+          sed -i -e "s/=\${MICROCMS_API_KEY}/=${MICROCMS_API_KEY}/g" ${DOTENV_PATH}
+
+      - name: GCloud Auth
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v1
+        with:
+          service: ${{ env.GCP_SERVICE }}
+          project_id: ${{ env.GCP_PROJECT }}
+          region: ${{ env.GCP_REGION }}
+          source: ./
+
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}

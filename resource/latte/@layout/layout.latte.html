@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang=”ja”>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {block head}
+    <title>{block title|stripHtml|trim}{/block} - ブログ</title>
+    {/block}
+
+    <!-- tailwindcss -->
+    <link rel="stylesheet" href="{asset('css/style.css')}">
+    {block css}{/block}
+
+    <!-- alpinejs -->
+    <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script> <!-- alpinejs intersect -->
+    <script src="//unpkg.com/alpinejs" defer></script> <!-- alpinejs core -->
+    <!-- fontawesome -->
+    <script src="//kit.fontawesome.com/849ec56e4d.js" defer crossorigin="anonymous"></script>
+    {block headerjs}{/block}
+</head>
+
+<body class="flex h-full flex-col">
+    <div id="content">
+        <header>
+            <nav>
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-50 flex justify-between py-8">
+                    <div class="relative z-10 flex items-center gap-16">
+                        <div class="flex lg:gap-10 gap-4">
+                            <a class="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]" href="{route('home')}">
+                                <span class="relative z-10">Home</span>
+                            </a>
+                            <a n:foreach="$share->categories as $_category" class="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]" href="{route('category.show', ['id' => $_category->id])}">
+                                <span class="relative z-10">{$_category->name}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="bg-gray-100 py-20">
+
+            <section class="">
+                <div class=" mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    {block content}{/block}
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="border-t border-gray-200">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center pt-8 pb-12 md:flex-row-reverse md:justify-between md:pt-6">
+                <p class="mt-6 text-sm text-gray-500 md:mt-0">
+                    © Copyright takemo {date('Y')}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

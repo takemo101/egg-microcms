@@ -1,0 +1,25 @@
+# for composer
+/vendor/
+
+# for docker
+/.env
+/mysql
+
+# for phpunit
+.phpunit.result.cache
+
+# for application
+/storage/log/*.log
+/storage/cache/latte/*
+/.php-cs-fixer.cache
+/resource/generate/*
+database.sqlite
+/node_modules
+/deploy.sh
+
+# other
+/.vscode
+memo.txt
+
+# keep directory
+!.gitkeep

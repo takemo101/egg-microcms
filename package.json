@@ -1,0 +1,12 @@
+{
+    "license": "UNLICENSED",
+    "devDependencies": {
+        "@tailwindcss/typography": "^0.5.9",
+        "tailwindcss": "^3.2.7"
+    },
+    "scripts": {
+        "build": "tailwindcss -i ./resource/css/style.css -o ./public/css/style.css --purgecss",
+        "minify": "tailwindcss -i ./resource/css/style.css -o ./public/css/style.css --minify",
+        "watch": "tailwindcss -i ./resource/css/style.css -o ./public/css/style.css --watch"
+    }
+}

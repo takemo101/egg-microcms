@@ -1,0 +1,13 @@
+# for aplication
+vendor/
+.env
+database.sqlite
+storage/cache/latte/*
+storage/log/*
+
+# for build
+.dockerignore
+.gcloudignore
+
+# for development
+.gitignore

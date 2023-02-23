@@ -1,0 +1,56 @@
+{
+    "name": "egg/egg",
+    "type": "project",
+    "description": "PHP Egg Skeleton",
+    "keywords": [
+        "php",
+        "package",
+        "web",
+        "framework"
+    ],
+    "authors": [
+        {
+            "name": "takemo101",
+            "email": "takemo101@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/takemo101/egg",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Module\\": "module/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.1",
+        "ext-json": "*",
+        "latte/latte": "^3.0",
+        "takemo101/egg": "^0.0.11",
+        "symfony/validator": "^6.2",
+        "microcmsio/microcms-php-sdk": "^1.0",
+        "nesbot/carbon": "^2.66",
+        "cycle/orm": "^2.2",
+        "cycle/annotated": "^3.2",
+        "cycle/migrations": "^4.0",
+        "cycle/schema-migrations-generator": "^2.1"
+    },
+    "require-dev": {
+        "php": "^8.1",
+        "symfony/var-dumper": "^6.2",
+        "friendsofphp/php-cs-fixer": "^3.14",
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.9"
+    }
+}
